@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 
 inline size_t square(size_t x) { return x * x; }
 
@@ -14,7 +15,7 @@ private:
 
 public:
 	Matrix(size_t n = 0);
-	Matrix(const int* a[]);
+	Matrix(int*& a);
 	void set_value(size_t row, size_t column, int x) const;
 	int get_value(size_t row, size_t column) const;
 	void clear() const;

@@ -8,9 +8,10 @@ Matrix::Matrix(size_t n = 0)
 	p = new int[square(len)];
 }
 
-Matrix::Matrix(const int* a[])
+Matrix::Matrix(int*& a)
 {
-
+	len = sqrt(sizeof(a));
+	this->p = a;
 }
 
 void Matrix::set_value(size_t row, size_t column, int x) const
@@ -28,7 +29,7 @@ void Matrix::clear() const
 
 //Matrix& identity();
 
-Matrix::~Matrix();
+Matrix::~Matrix()
 {
 }
 
