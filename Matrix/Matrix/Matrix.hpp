@@ -16,7 +16,7 @@ private:
 public:
 	Matrix();
 	Matrix(size_t n);
-	Matrix(int*& a);
+	Matrix(int a[]);
 	void set_value(size_t row, size_t column, int x) const;
 	int get_value(size_t row, size_t column) const;
 	void clear() const;

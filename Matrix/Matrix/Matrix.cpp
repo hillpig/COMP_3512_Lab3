@@ -17,9 +17,9 @@ Matrix::Matrix(size_t n)
 		p[i] = 0;
 }
 
-Matrix::Matrix(int*& a)
+Matrix::Matrix(int a[])
 {
-	len = sqrt(sizeof(a));
+	len = (int)sqrt(sizeof(a)/sizeof(int));
 	this->p = a;
 }
 
@@ -58,16 +58,17 @@ ostream& operator<<(ostream& os, const Matrix& obj)
 		for (size_t j{ 0 }; j < obj.len; j++)
 			os << obj.get_value(i, j);
 		os << endl;
- }
-
+	}
 }
 
 bool Matrix::operator==(Matrix& otherMatrix)
 {
+	return len == otherMatrix.len ? true : false;
 }
 
 bool Matrix::operator<(Matrix& otherMatrix)
 {
+
 }
 
 bool Matrix::operator>(Matrix& otherMatrix)
