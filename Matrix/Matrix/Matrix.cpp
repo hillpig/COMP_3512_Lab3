@@ -16,7 +16,7 @@ Matrix::Matrix(int*& a)
 
 void Matrix::set_value(size_t row, size_t column, int x) const
 {
-
+	p[len*row + column] = x;
 }
 
 int Matrix::get_value(size_t row, size_t column) const
@@ -25,6 +25,7 @@ int Matrix::get_value(size_t row, size_t column) const
 }
 void Matrix::clear() const
 {
+
 }
 
 //Matrix& identity();
