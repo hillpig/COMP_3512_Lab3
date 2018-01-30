@@ -21,7 +21,7 @@ void Matrix::set_value(size_t row, size_t column, int x) const
 
 int Matrix::get_value(size_t row, size_t column) const
 {
-
+	return p[len*row + column];
 }
 void Matrix::clear() const
 {
