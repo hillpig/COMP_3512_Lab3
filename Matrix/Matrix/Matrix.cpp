@@ -25,7 +25,8 @@ int Matrix::get_value(size_t row, size_t column) const
 }
 void Matrix::clear() const
 {
-
+	for (size_t i{ 0 }; i < len; i++)
+		p[i] = 0;
 }
 
 //Matrix& identity();
