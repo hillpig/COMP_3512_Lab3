@@ -83,11 +83,12 @@ bool Matrix::operator!=(Matrix& otherMatrix)
 
 bool Matrix::operator>=(Matrix& otherMatrix)
 {
-	return !operator== (otherMatrix);
+	return !operator< (otherMatrix);
 }
 
 bool Matrix::operator<=(Matrix& otherMatrix)
 {
+	return !operator> (otherMatrix);
 }
 
 //Matrix& operator++();
