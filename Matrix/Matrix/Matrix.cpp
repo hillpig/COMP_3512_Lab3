@@ -68,11 +68,12 @@ bool Matrix::operator==(Matrix& otherMatrix)
 
 bool Matrix::operator<(Matrix& otherMatrix)
 {
-
+	return len < otherMatrix.len ? true : false;
 }
 
 bool Matrix::operator>(Matrix& otherMatrix)
 {
+
 }
 
 bool Matrix::operator!=(Matrix& otherMatrix)
