@@ -48,6 +48,7 @@ Matrix Matrix::identity() const
 
 Matrix::~Matrix()
 {
+	delete[] p;
 }
 
 
