@@ -14,12 +14,13 @@ private:
 	int *p;
 
 public:
-	Matrix(size_t n = 0);
+	Matrix();
+	Matrix(size_t n);
 	Matrix(int*& a);
 	void set_value(size_t row, size_t column, int x) const;
 	int get_value(size_t row, size_t column) const;
 	void clear() const;
-	Matrix& identity();
+	Matrix identity() const;
 	~Matrix();
 	friend ostream& operator<<(ostream& os, const Matrix& obj);
 	bool operator==(Matrix& otherMatrix);

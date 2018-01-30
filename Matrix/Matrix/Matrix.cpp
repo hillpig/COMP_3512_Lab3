@@ -1,11 +1,20 @@
 #include "Matrix.hpp"
 
 
+Matrix::Matrix()
+{
+	len = 1;
+	p = new int[1];
+	p[0] = 0;
+}
 
-Matrix::Matrix(size_t n = 0)
+
+Matrix::Matrix(size_t n)
 {
 	len = n;
 	p = new int[square(len)];
+	for (size_t i{ 0 }; i < square(len); i++)
+		p[i] = 0;
 }
 
 Matrix::Matrix(int*& a)
@@ -29,7 +38,13 @@ void Matrix::clear() const
 		p[i] = 0;
 }
 
-//Matrix& identity();
+Matrix Matrix::identity() const
+{
+	Matrix id = Matrix(len);
+	for (size_t i{ 0 }; i < len; i++)
+		id.set_value(i, i, 1);
+	return id;
+}
 
 Matrix::~Matrix()
 {
