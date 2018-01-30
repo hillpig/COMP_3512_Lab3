@@ -54,6 +54,12 @@ Matrix::~Matrix()
 
 ostream& operator<<(ostream& os, const Matrix& obj)
 {
+	for (size_t i{ 0 }; i < obj.len; i++) {
+		for (size_t j{ 0 }; j < obj.len; j++)
+			os << obj.get_value(i, j);
+		os << endl;
+ }
+
 }
 
 bool Matrix::operator==(Matrix& otherMatrix)
