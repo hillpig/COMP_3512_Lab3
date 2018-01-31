@@ -30,7 +30,7 @@ public:
 	bool operator>=(Matrix& otherMatrix);
 	bool operator<=(Matrix& otherMatrix);
 	Matrix& operator++();
-	Matrix& operator++(int);
+	Matrix operator++(int);
 	Matrix& operator--();
 	Matrix& operator--(int);
 	Matrix& operator=(const Matrix& otherMatrix);

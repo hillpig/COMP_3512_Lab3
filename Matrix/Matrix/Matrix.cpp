@@ -98,7 +98,12 @@ Matrix& Matrix::operator++()
 		p[i]++;
 	return *this;
 }
-//Matrix& operator++(int);
+Matrix Matrix::operator++(int)
+{
+	Matrix temp(*this);
+	operator++();
+	return temp;
+}
 //Matrix& operator--();
 //Matrix& operator--(int);
 Matrix& Matrix::operator=(const Matrix& otherMatrix)
