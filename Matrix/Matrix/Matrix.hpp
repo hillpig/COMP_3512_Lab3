@@ -33,7 +33,7 @@ public:
 	Matrix& operator++(int);
 	Matrix& operator--();
 	Matrix& operator--(int);
-	Matrix& operator=(Matrix& otherMatrix);
+	Matrix& operator=(const Matrix& otherMatrix);
 	Matrix(const Matrix& otherMatrix);
 	friend void swap(Matrix& firstMatrix, Matrix& secondMatrix);
 

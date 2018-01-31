@@ -40,7 +40,7 @@ void Matrix::clear() const
 
 Matrix Matrix::identity() const
 {
-	Matrix id = Matrix(len);
+	Matrix id(len);
 	for (size_t i{ 0 }; i < len; i++)
 		id.set_value(i, i, 1);
 	return id;
@@ -59,6 +59,7 @@ ostream& operator<<(ostream& os, const Matrix& obj)
 			os << obj.get_value(i, j);
 		os << endl;
 	}
+	return os;
 }
 
 bool Matrix::operator==(Matrix& otherMatrix)
@@ -91,11 +92,21 @@ bool Matrix::operator<=(Matrix& otherMatrix)
 	return !operator> (otherMatrix);
 }
 
-//Matrix& operator++();
+Matrix& Matrix::operator++()
+{
+	for (size_t i{ 0 }; i < len; i++)
+		p[i]++;
+	return *this;
+}
 //Matrix& operator++(int);
 //Matrix& operator--();
 //Matrix& operator--(int);
-//Matrix& operator=(Matrix& otherMatrix);
+Matrix& Matrix::operator=(const Matrix& otherMatrix)
+{
+	this->len=otherMatrix.len;
+	this->p=otherMatrix.p;
+	return *this;
+}
 //Matrix(const Matrix& otherMatrix);
 void swap(Matrix& firstMatrix, Matrix& secondMatrix)
 {
