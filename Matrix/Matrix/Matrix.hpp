@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <array>
 #include <math.h>
 
 inline size_t square(size_t x) { return x * x; }

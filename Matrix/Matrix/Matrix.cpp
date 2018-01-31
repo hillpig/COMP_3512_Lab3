@@ -23,6 +23,12 @@ Matrix::Matrix(int a[])
 	this->p = a;
 }
 
+Matrix::Matrix(const Matrix& otherMatrix)
+{
+	this->len = otherMatrix.len;
+	this->p = otherMatrix.p;
+}
+
 void Matrix::set_value(size_t row, size_t column, int x) const
 {
 	p[len*row + column] = x;
@@ -122,7 +128,9 @@ Matrix& Matrix::operator=(const Matrix& otherMatrix)
 	this->p=otherMatrix.p;
 	return *this;
 }
-//Matrix(const Matrix& otherMatrix);
+
 void swap(Matrix& firstMatrix, Matrix& secondMatrix)
 {
+	swap(firstMatrix.len, secondMatrix.len);
+	swap(firstMatrix.p, secondMatrix.p);
 }
