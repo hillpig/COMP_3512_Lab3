@@ -142,3 +142,9 @@ Matrix& Matrix::operator+=(int x)
 	return *this;
 }
 
+Matrix operator+(Matrix m, int x)
+{
+	m += x;
+	return m;
+}
+
