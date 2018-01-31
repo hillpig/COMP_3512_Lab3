@@ -134,3 +134,11 @@ void swap(Matrix& firstMatrix, Matrix& secondMatrix)
 	swap(firstMatrix.len, secondMatrix.len);
 	swap(firstMatrix.p, secondMatrix.p);
 }
+
+Matrix& Matrix::operator+=(int x)
+{
+	for (size_t i{ 0 }; i < len; i++)
+		p[i] += x;
+	return *this;
+}
+
