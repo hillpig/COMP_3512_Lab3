@@ -104,7 +104,12 @@ Matrix Matrix::operator++(int)
 	operator++();
 	return temp;
 }
-//Matrix& operator--();
+Matrix& Matrix::operator--()
+{
+	for (size_t i{ 0 }; i < len; i++)
+		p[i]--;
+	return *this;
+}
 //Matrix& operator--(int);
 Matrix& Matrix::operator=(const Matrix& otherMatrix)
 {
