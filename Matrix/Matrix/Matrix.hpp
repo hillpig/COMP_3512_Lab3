@@ -40,5 +40,5 @@ public:
 	Matrix& operator+=(int x);
 	friend Matrix operator+(Matrix m, int x);
 	Matrix& operator-=(int x);
-	Matrix& operator-(int x);
+	friend Matrix operator-(Matrix m, int x);
 };

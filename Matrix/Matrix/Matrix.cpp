@@ -154,3 +154,9 @@ Matrix& Matrix::operator-=(int x)
 		p[i] -= x;
 	return *this;
 }
+
+Matrix operator-(Matrix m, int x)
+{
+	m -= x;
+	return m;
+}
