@@ -110,7 +110,12 @@ Matrix& Matrix::operator--()
 		p[i]--;
 	return *this;
 }
-//Matrix& operator--(int);
+Matrix Matrix::operator--(int)
+{
+	Matrix temp(*this);
+	operator--();
+	return temp;
+}
 Matrix& Matrix::operator=(const Matrix& otherMatrix)
 {
 	this->len=otherMatrix.len;
