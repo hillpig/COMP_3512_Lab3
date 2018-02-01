@@ -11,25 +11,19 @@ using namespace std;
 
 class Matrix {
 private:
-	size_t len;
-	int *p;
+
 
 public:
+	size_t len;
+	int *p;
 	Matrix();
 	Matrix(size_t n);
-	Matrix(int a[]);
+	Matrix(int a[], int x);
 	void set_value(size_t row, size_t column, int x) const;
 	int get_value(size_t row, size_t column) const;
 	void clear() const;
 	Matrix identity() const;
 	~Matrix();
-	friend ostream& operator<<(ostream& os, const Matrix& obj);
-	bool operator==(Matrix& otherMatrix);
-	bool operator<(Matrix& otherMatrix);
-	bool operator>(Matrix& otherMatrix);
-	bool operator!=(Matrix& otherMatrix);
-	bool operator>=(Matrix& otherMatrix);
-	bool operator<=(Matrix& otherMatrix);
 	Matrix& operator++();
 	Matrix operator++(int);
 	Matrix& operator--();
@@ -37,8 +31,58 @@ public:
 	Matrix& operator=(const Matrix& otherMatrix);
 	Matrix(const Matrix& otherMatrix);
 	friend void swap(Matrix& firstMatrix, Matrix& secondMatrix);
-	Matrix& operator+=(int x);
-	friend Matrix operator+(Matrix m, int x);
-	Matrix& operator-=(int x);
-	friend Matrix operator-(Matrix m, int x);
+	Matrix& operator+=(const Matrix& x);
+	Matrix& operator-=(const Matrix& x);
 };
+
+inline ostream& operator<<(ostream& os, const Matrix& obj)
+{
+	for (size_t i{ 0 }; i < obj.len; i++) {
+		for (size_t j{ 0 }; j < obj.len; j++)
+			os << obj.get_value(i, j) <<"\t";
+		os << endl;
+	}
+	return os;
+}
+
+inline bool operator==(const Matrix& thisMatrix, const Matrix& otherMatrix)
+{
+	return thisMatrix.len == otherMatrix.len ? true : false;
+}
+
+inline bool operator<(const Matrix& thisMatrix, const Matrix& otherMatrix)
+{
+	return thisMatrix.len < otherMatrix.len ? true : false;
+}
+
+inline bool operator>(const Matrix& thisMatrix, const Matrix& otherMatrix)
+{
+	return thisMatrix.len > otherMatrix.len ? true : false;
+}
+
+inline bool operator!=(const Matrix& thisMatrix, const Matrix& otherMatrix)
+{
+	return !(thisMatrix == otherMatrix);
+}
+
+inline bool operator>=(const Matrix& thisMatrix, const Matrix& otherMatrix)
+{
+	return !(thisMatrix < otherMatrix);
+}
+
+inline bool operator<=(const Matrix& thisMatrix, const Matrix& otherMatrix)
+{
+	return !(thisMatrix > otherMatrix);
+}
+
+inline Matrix operator+(Matrix& f, const Matrix& s)
+{
+	f += s;
+	return f;
+}
+
+inline Matrix operator-(Matrix& f, Matrix& s)
+{
+	f -= s;
+	return f;
+}

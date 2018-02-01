@@ -1,15 +1,13 @@
 #include "Matrix.hpp"
 
-
 Matrix::Matrix()
 {
 	len = 1;
-	p = new int[1];
+	p = new int[len];
 	p[0] = 0;
 }
 
-
-Matrix::Matrix(size_t n)
+Matrix::Matrix(size_t n = 1)
 {
 	len = n;
 	p = new int[square(len)];
@@ -17,30 +15,47 @@ Matrix::Matrix(size_t n)
 		p[i] = 0;
 }
 
-Matrix::Matrix(int a[])
+Matrix::Matrix(int a[], int x)
 {
-	len = (int)sqrt(sizeof(a)/sizeof(int));
-	this->p = a;
+	len = x;
+	p = new int[square(len)];
+	for (size_t i{0}; i< square(len); i++)
+		this->p[i] = a[i];
 }
 
 Matrix::Matrix(const Matrix& otherMatrix)
 {
 	this->len = otherMatrix.len;
-	this->p = otherMatrix.p;
+	p = new int[square(len)];
+	for (size_t i{ 0 }; i<square(len); i++)
+		this->p[i] = otherMatrix.p[i];
 }
 
+//3-parameter, row, colum, vaule
+//pre:input must within the matrix
+//post:set the specific location's element equal to vaule
+//return:n/a
 void Matrix::set_value(size_t row, size_t column, int x) const
 {
 	p[len*row + column] = x;
 }
 
+//2-parameter, row,colum
+//pre:input must within the matrix
+//post
+//return: the specific position of matrixs' elements
 int Matrix::get_value(size_t row, size_t column) const
 {
 	return p[len*row + column];
 }
+
+//clear the matrixs:set all elements to 0
+//pre
+//post
+//return:
 void Matrix::clear() const
 {
-	for (size_t i{ 0 }; i < len; i++)
+	for (size_t i{ 0 }; i < square(len); i++)
 		p[i] = 0;
 }
 
@@ -57,50 +72,9 @@ Matrix::~Matrix()
 	delete[] p;
 }
 
-
-ostream& operator<<(ostream& os, const Matrix& obj)
-{
-	for (size_t i{ 0 }; i < obj.len; i++) {
-		for (size_t j{ 0 }; j < obj.len; j++)
-			os << obj.get_value(i, j);
-		os << endl;
-	}
-	return os;
-}
-
-bool Matrix::operator==(Matrix& otherMatrix)
-{
-	return len == otherMatrix.len ? true : false;
-}
-
-bool Matrix::operator<(Matrix& otherMatrix)
-{
-	return len < otherMatrix.len ? true : false;
-}
-
-bool Matrix::operator>(Matrix& otherMatrix)
-{
-	return len > otherMatrix.len ? true : false;
-}
-
-bool Matrix::operator!=(Matrix& otherMatrix)
-{
-	return !operator== (otherMatrix);
-}
-
-bool Matrix::operator>=(Matrix& otherMatrix)
-{
-	return !operator< (otherMatrix);
-}
-
-bool Matrix::operator<=(Matrix& otherMatrix)
-{
-	return !operator> (otherMatrix);
-}
-
 Matrix& Matrix::operator++()
 {
-	for (size_t i{ 0 }; i < len; i++)
+	for (size_t i{ 0 }; i < square(len); i++)
 		p[i]++;
 	return *this;
 }
@@ -112,7 +86,7 @@ Matrix Matrix::operator++(int)
 }
 Matrix& Matrix::operator--()
 {
-	for (size_t i{ 0 }; i < len; i++)
+	for (size_t i{ 0 }; i < square(len); i++)
 		p[i]--;
 	return *this;
 }
@@ -135,28 +109,18 @@ void swap(Matrix& firstMatrix, Matrix& secondMatrix)
 	swap(firstMatrix.p, secondMatrix.p);
 }
 
-Matrix& Matrix::operator+=(int x)
+Matrix& Matrix::operator+=(const Matrix& x)
 {
-	for (size_t i{ 0 }; i < len; i++)
-		p[i] += x;
+	for (size_t i{ 0 }; i < square(len); i++)
+		p[i] += x.p[i];
 	return *this;
 }
 
-Matrix operator+(Matrix m, int x)
-{
-	m += x;
-	return m;
-}
 
-Matrix& Matrix::operator-=(int x)
+Matrix& Matrix::operator-=(const Matrix& x)
 {
-	for (size_t i{ 0 }; i < len; i++)
-		p[i] -= x;
+	for (size_t i{ 0 }; i < square(len); i++)
+		p[i] -= x.p[i];
 	return *this;
 }
 
-Matrix operator-(Matrix m, int x)
-{
-	m -= x;
-	return m;
-}
