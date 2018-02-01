@@ -1,6 +1,6 @@
 ﻿#include "Matrix.hpp"
 
-int main() {
+int main(int argc, char ** argv) {
 
 	// the default constructor
 	Matrix test1;
@@ -81,7 +81,7 @@ int main() {
 	cout << (test4 > test5) << endl;
 
 	//test the operator !=
-	cout << "Test15: Matrix 4 ！= Matrix 5: ";
+	cout << "Test15: Matrix 4 != Matrix 5: ";
 	cout << (test4 != test5) << endl;
 
 	//test the operator >= and <=
@@ -121,8 +121,5 @@ int main() {
 
 	cout << test5 << endl;
 
-
-	system("pause");
-	//	test1.~Matrix();
-
+	return 0;
 }

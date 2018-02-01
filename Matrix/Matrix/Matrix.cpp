@@ -1,5 +1,6 @@
 #include "Matrix.hpp"
 
+//default constructor
 Matrix::Matrix()
 {
 	len = 1;
@@ -15,6 +16,7 @@ Matrix::Matrix(size_t n = 1)
 		p[i] = 0;
 }
 
+//constructor accept array
 Matrix::Matrix(int a[], int x)
 {
 	len = x;
@@ -23,11 +25,12 @@ Matrix::Matrix(int a[], int x)
 		this->p[i] = a[i];
 }
 
+//copy constructor
 Matrix::Matrix(const Matrix& otherMatrix)
 {
 	this->len = otherMatrix.len;
-	p = new int[square(len)];
-	for (size_t i{ 0 }; i<square(len); i++)
+	p = new int[square(this->len)];
+	for (size_t i{ 0 }; i<square(this->len); i++)
 		this->p[i] = otherMatrix.p[i];
 }
 
@@ -59,6 +62,10 @@ void Matrix::clear() const
 		p[i] = 0;
 }
 
+//change the matrixs to identity matrixs
+//pre:must have at lest one elements
+//post: the 0 shoud be changed to 1
+//return a new identity matrixs
 Matrix Matrix::identity() const
 {
 	Matrix id(len);
@@ -67,35 +74,58 @@ Matrix Matrix::identity() const
 	return id;
 }
 
+//deconstructor
 Matrix::~Matrix()
 {
+	if (p)
 	delete[] p;
 }
 
+//increment
+//pre must have one elements
+//post
+//return a incremented matrixs
 Matrix& Matrix::operator++()
 {
 	for (size_t i{ 0 }; i < square(len); i++)
 		p[i]++;
 	return *this;
 }
+
+//increment
+//pre must have one elements
+//post
+//return a incremented matrixs
 Matrix Matrix::operator++(int)
 {
 	Matrix temp(*this);
 	operator++();
 	return temp;
 }
+
+//decrement
+//pre must have one elements
+//post
+//return a decremented matrixs
 Matrix& Matrix::operator--()
 {
 	for (size_t i{ 0 }; i < square(len); i++)
 		p[i]--;
 	return *this;
 }
+
+//decrement
+//pre must have one elements
+//post
+//return a decremented matrixs
 Matrix Matrix::operator--(int)
 {
 	Matrix temp(*this);
 	operator--();
 	return temp;
 }
+
+
 Matrix& Matrix::operator=(const Matrix& otherMatrix)
 {
 	this->len=otherMatrix.len;
@@ -103,12 +133,22 @@ Matrix& Matrix::operator=(const Matrix& otherMatrix)
 	return *this;
 }
 
+
+//swap two matrixs
+//pre
+//post
+//return
 void swap(Matrix& firstMatrix, Matrix& secondMatrix)
 {
 	swap(firstMatrix.len, secondMatrix.len);
 	swap(firstMatrix.p, secondMatrix.p);
 }
 
+
+//operater +=
+//pre: must have same size for each matrix
+//post
+//return combined matrix
 Matrix& Matrix::operator+=(const Matrix& x)
 {
 	for (size_t i{ 0 }; i < square(len); i++)
@@ -116,7 +156,10 @@ Matrix& Matrix::operator+=(const Matrix& x)
 	return *this;
 }
 
-
+//operater -=
+//pre: must have same size for each matrix
+//post
+//return minused matrix
 Matrix& Matrix::operator-=(const Matrix& x)
 {
 	for (size_t i{ 0 }; i < square(len); i++)

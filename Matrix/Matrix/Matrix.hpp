@@ -16,13 +16,21 @@ private:
 public:
 	size_t len;
 	int *p;
+
+	//default constructor
 	Matrix();
+
+
 	Matrix(size_t n);
+
+	//constructor accept array
 	Matrix(int a[], int x);
 	void set_value(size_t row, size_t column, int x) const;
 	int get_value(size_t row, size_t column) const;
 	void clear() const;
 	Matrix identity() const;
+
+	//deconstructor
 	~Matrix();
 	Matrix& operator++();
 	Matrix operator++(int);
@@ -75,14 +83,16 @@ inline bool operator<=(const Matrix& thisMatrix, const Matrix& otherMatrix)
 	return !(thisMatrix > otherMatrix);
 }
 
-inline Matrix operator+(Matrix& f, const Matrix& s)
+inline Matrix operator+(const Matrix& f, const Matrix& s)
 {
-	f += s;
-	return f;
+	Matrix temp(f);
+	temp += s;
+	return temp;
 }
 
-inline Matrix operator-(Matrix& f, Matrix& s)
+inline Matrix operator-(const Matrix& f, Matrix& s)
 {
-	f -= s;
-	return f;
+	Matrix temp(f);
+	temp -= s;
+	return temp;
 }
